@@ -6,11 +6,27 @@ declare module 'styled-components' {
 
     colors: {
       primary: string;
-      orange: string;
-      red: string;
+      secundary: string;
+
+      warning: string;
+      success: string;
 
       background: string;
+
+      subtitle: string;
+
+      cardTittle: string;
+      cardDescription: string;
+      cardTags: string;
+
+      backgroundCard: string;
+
       text: string;
+
+      degradeTo: string;
+      degradeFrom: string;
+
+      degrade: string;
     };
   }
 }

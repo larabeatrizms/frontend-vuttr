@@ -11,13 +11,16 @@ export default createGlobalStyle`
 
   body {
     background: ${(props) => props.theme.colors.background};
+    transition: all 0.2s;
     color: #fff;
     -webkit-font-smoothing: antialiased;
   }
 
-  border-style, -moz-user-input, button {
-    font-family: serif;
+  body, input, button {
+    font-family: 'Nunito', sans-serif;
     font-size: 16px;
+    padding: 0;
+    border: 0;
   }
 
   h1, h2, h3, h4, h5, h6, strong {
@@ -26,6 +29,12 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  #root {
+    
+    margin: 0 auto;
+    
   }
 
 `;
