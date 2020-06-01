@@ -1,5 +1,5 @@
-import React, { useState, Children } from 'react';
-import { FiPlus, FiXCircle } from 'react-icons/fi';
+import React, { useState } from 'react';
+import { FiPlus, FiXCircle, FiX } from 'react-icons/fi';
 import colors from '../../styles/colors';
 
 import Input from '../Input';
@@ -9,9 +9,11 @@ import { useTheme } from '../../hooks/theme';
 
 interface ModalProps {
   isOpen: boolean;
+  title: string;
+  type: 'add' | 'remove';
 }
 
-const Modal: React.FC<ModalProps> = ({ children, isOpen }) => {
+const Modal: React.FC<ModalProps> = ({ children, isOpen, title, type }) => {
   const { theme } = useTheme();
 
   // let subtitle;
@@ -48,8 +50,9 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen }) => {
         <Content>
           <div className="header">
             <div className="title">
-              <FiPlus color={colors.green} />
-              Add new Tool
+              {type === 'add' && <FiPlus color={colors.green} />}
+              {type === 'remove' && <FiX color={colors.red} />}
+              {title}
             </div>
             <button type="button" onClick={() => setIsOpen(false)}>
               <FiXCircle color={colors.red} size={22} />

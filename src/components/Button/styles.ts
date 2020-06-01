@@ -73,6 +73,16 @@ export const Container = styled.button<ContainerProps>`
       height: 30px;
       background-color: ${props.theme.colors.warning};
     `};
+  
+  ${(props) =>
+    props.variant === 'cancel' &&
+    css`
+      width: 101px;
+      height: 30px;
+      border: solid ${props.theme.colors.warning} 1px;
+      background-color: ${props.theme.colors.background};
+      margin-right: 1.5rem;
+    `};
 
 
 `;

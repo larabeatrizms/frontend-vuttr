@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import Modal from 'react-modal';
 
+interface ContentProps {
+  type: 'add' | 'remove';
+}
+
 export const Container = styled(Modal)`
   position: absolute;
   top: 50%;
