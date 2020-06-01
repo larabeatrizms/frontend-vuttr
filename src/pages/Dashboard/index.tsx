@@ -27,12 +27,14 @@ const Dashboard: React.FC = () => {
           <p>Tags</p>
           <Input sizeType="form" />
 
-          <Button variant="addTool" size="regular">
-            <div>
-              <FiPlus size={25} />
-              Add
-            </div>
-          </Button>
+          <div>
+            <Button variant="addTool" size="regular">
+              <div>
+                <FiPlus size={25} />
+                Add
+              </div>
+            </Button>
+          </div>
         </Modal>
       </ModalContainers>
       <Header />

@@ -70,7 +70,14 @@ export const Content = styled.div`
       margin-bottom: 1.5rem;
     }
 
-    button {
+    div {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    div button {
+      display: flex;
+      justify-content: center;
       margin-top: 1.7rem;
       margin-bottom: 1.2rem;
     }
