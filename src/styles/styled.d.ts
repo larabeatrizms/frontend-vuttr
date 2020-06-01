@@ -13,7 +13,7 @@ declare module 'styled-components' {
 
       background: string;
 
-      subtitle: string;
+      buttonText: string;
 
       cardTittle: string;
       cardDescription: string;

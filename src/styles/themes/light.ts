@@ -12,7 +12,7 @@ export default {
 
     background: colors.purpleLight,
 
-    subtitle: colors.white,
+    buttonText: colors.white,
 
     cardTittle: colors.grayDarker,
     cardDescription: colors.grayDark,

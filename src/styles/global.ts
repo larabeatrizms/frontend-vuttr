@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  html {
+    font-size: 62.5%;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -18,7 +22,7 @@ export default createGlobalStyle`
 
   body, input, button {
     font-family: 'Nunito', sans-serif;
-    font-size: 16px;
+    letter-spacing: 0.5px;
     padding: 0;
     border: 0;
   }
@@ -32,9 +36,10 @@ export default createGlobalStyle`
   }
 
   #root {
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0 auto;
-    
   }
 
 `;
