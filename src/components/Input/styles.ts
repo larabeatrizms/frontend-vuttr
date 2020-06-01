@@ -5,6 +5,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.input<ContainerProps>`
+  background-color: ${(props) => props.theme.colors.backgroundCard};
   width: ${(props) => (props.sizeType === 'search' ? 435 : 458)}px;
   height: ${(props) => (props.sizeType === 'search' ? 49 : 34)}px;
 

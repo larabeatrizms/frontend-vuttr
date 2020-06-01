@@ -27,7 +27,7 @@ export const Container = styled.button<ContainerProps>`
     props.variant === 'search' &&
     css`
       width: 135px;
-      background-color: ${props.theme.colors.secundary};
+      background-color: ${props.theme.colors.secondary};
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
 
@@ -54,7 +54,7 @@ export const Container = styled.button<ContainerProps>`
       @media (max-width: 480px) {
         font-size: 1.2rem;
         max-width: 80px;
-        height: ${props.size === 'large' ? 39 : 30}px;
+        height: ${props.size === 'large' && 39}px;
       }
     `}
 

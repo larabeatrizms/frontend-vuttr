@@ -5,7 +5,7 @@ export default {
 
   colors: {
     primary: '#5636D3',
-    secundary: '#FF872C',
+    secondary: '#FF872C',
 
     warning: '#E83F5B',
     success: '#12A454',
