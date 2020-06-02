@@ -55,7 +55,7 @@ const Modal: React.FC<ModalProps> = ({ children, title, type }) => {
               <FiXCircle color={colors.red} size={22} />
             </button>
           </div>
-          <form>{children}</form>
+          <div className="form">{children}</div>
         </Content>
       </Container>
     </>

@@ -51,7 +51,7 @@ export const Content = styled.div`
     }
   }
 
-  form {
+  .form {
     margin: 3.2rem 2.6rem 0 3.2rem;
 
     p {
@@ -69,7 +69,11 @@ export const Content = styled.div`
       color: ${(props) => props.theme.colors.cardDescription};
       border-radius: 1rem;
       border: 0;
-      max-width: 458px;
+      max-width: 100%;
+      width: 100%;
+      min-width: 100%;
+      min-height: 100px;
+      max-height: 300px;
       padding: 15px;
       margin-bottom: 1.5rem;
     }

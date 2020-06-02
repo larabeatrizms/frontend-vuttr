@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FiPlus } from 'react-icons/fi';
+import { Form } from '@unform/web';
 import api from '../../services/api';
 import { useModal } from '../../hooks/modal';
 
@@ -20,6 +21,13 @@ interface Tool {
   tags: string[];
 }
 
+interface AddToolFormData {
+  title: string;
+  description: string;
+  link: string;
+  tags: string[];
+}
+
 const Dashboard: React.FC = () => {
   const [tools, setTools] = useState<Tool[]>([]);
   const { isOpenRemove, cardId } = useModal();
@@ -33,6 +41,12 @@ const Dashboard: React.FC = () => {
 
     loadTools();
   }, []);
+
+  function handleSubmit(data: AddToolFormData) {
+    console.log(data);
+
+    // isOpenRemove();
+  }
 
   const removeTool = useCallback(
     async (id) => {
@@ -71,26 +85,28 @@ const Dashboard: React.FC = () => {
         </div>
       </Modal>
       <Modal title="Add new tool" type="add">
-        <p>Tool Name</p>
-        <Input sizeType="form" />
+        <Form onSubmit={handleSubmit}>
+          <p>Tool Name</p>
+          <Input name="title" sizeType="form" />
 
-        <p>Tool Link</p>
-        <Input sizeType="form" />
+          <p>Tool Link</p>
+          <Input name="link" sizeType="form" />
 
-        <p>Tool description</p>
-        <textarea rows={4} cols={55} />
+          <p>Tool description</p>
+          <Input name="description" sizeType="form" isTextArea />
 
-        <p>Tags</p>
-        <Input sizeType="form" />
+          <p>Tags</p>
+          <Input name="tags" sizeType="form" />
 
-        <div>
-          <Button variant="addTool" size="regular">
-            <div>
-              <FiPlus size={25} />
-              Add
-            </div>
-          </Button>
-        </div>
+          <div>
+            <Button variant="addTool" size="regular" type="submit">
+              <div>
+                <FiPlus size={25} />
+                Add
+              </div>
+            </Button>
+          </div>
+        </Form>
       </Modal>
       <Header />
 
