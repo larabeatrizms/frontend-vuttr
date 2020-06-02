@@ -44,7 +44,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 100%;
 
-  h1 {
+  a {
     color: ${(props) => props.theme.colors.cardTittle};
     font-size: 2.4rem;
     font-weight: 700;

@@ -1,43 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FiPlus, FiXCircle, FiX } from 'react-icons/fi';
 import colors from '../../styles/colors';
 
-import Input from '../Input';
-
 import { Container, Content } from './styles';
 import { useTheme } from '../../hooks/theme';
+import { useModal } from '../../hooks/modal';
 
 interface ModalProps {
-  isOpen: boolean;
   title: string;
   type: 'add' | 'remove';
 }
 
-const Modal: React.FC<ModalProps> = ({ children, isOpen, title, type }) => {
+const Modal: React.FC<ModalProps> = ({ children, title, type }) => {
   const { theme } = useTheme();
-
-  // let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(isOpen);
-
-  function openModal() {
-    setIsOpen(true);
-  }
+  const {
+    isOpenAdd,
+    isOpenRemove,
+    modalAddIsOpen,
+    modalRemoveIsOpen,
+  } = useModal();
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
   }
 
   return (
     <>
       <Container
-        isOpen={modalIsOpen}
+        isOpen={type === 'add' ? modalAddIsOpen : modalRemoveIsOpen}
         onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
+        onRequestClose={() => (modalAddIsOpen ? isOpenAdd() : isOpenRemove())}
         style={{
           overlay: {
             backgroundColor:
@@ -46,6 +38,8 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen, title, type }) => {
                 : 'rgba(50, 50, 57, 0.8)',
           },
         }}
+        className="modal"
+        ariaHideApp={false}
       >
         <Content>
           <div className="header">
@@ -54,7 +48,10 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen, title, type }) => {
               {type === 'remove' && <FiX color={colors.red} />}
               {title}
             </div>
-            <button type="button" onClick={() => setIsOpen(false)}>
+            <button
+              type="button"
+              onClick={() => (modalAddIsOpen ? isOpenAdd() : isOpenRemove())}
+            >
               <FiXCircle color={colors.red} size={22} />
             </button>
           </div>

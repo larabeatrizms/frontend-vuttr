@@ -1,29 +1,31 @@
 import React from 'react';
 import { FiX } from 'react-icons/fi';
+import { useModal } from '../../hooks/modal';
 
 import { Container, Content } from './styles';
 
 interface CardProps {
   title: string;
+  link: string;
   description: string;
   tags: string[];
 }
 
-const Card: React.FC = () => {
+const Card: React.FC<CardProps> = ({ title, link, description, tags }) => {
+  const { isOpenRemove } = useModal();
+
   return (
     <Container>
       <Content>
-        <h1>Notion</h1>
-        <p>
-          All in one tool to organize teams and ideas. Write, plan, collaborate,
-          and get organized.
-        </p>
+        <a href={link}>{title}</a>
+        <p>{description}</p>
         <div>
-          <strong>#organization</strong>
-          <strong>#planning</strong>
+          {tags.map((tag) => (
+            <strong key={tag}>{`#${tag}`}</strong>
+          ))}
         </div>
       </Content>
-      <button type="button">
+      <button type="button" onClick={() => isOpenRemove()}>
         <FiX size={18} />
       </button>
     </Container>
