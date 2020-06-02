@@ -25,12 +25,12 @@ interface AddToolFormData {
   title: string;
   description: string;
   link: string;
-  tags: string[];
+  tags: string;
 }
 
 const Dashboard: React.FC = () => {
   const [tools, setTools] = useState<Tool[]>([]);
-  const { isOpenRemove, cardId } = useModal();
+  const { isOpenAdd, isOpenRemove, cardId } = useModal();
 
   useEffect(() => {
     async function loadTools(): Promise<void> {
@@ -42,10 +42,22 @@ const Dashboard: React.FC = () => {
     loadTools();
   }, []);
 
-  function handleSubmit(data: AddToolFormData) {
-    console.log(data);
+  async function handleSubmit(data: AddToolFormData) {
+    try {
+      const tagsSplit = data.tags.split(' ');
 
-    // isOpenRemove();
+      const request = { ...data, tags: tagsSplit };
+
+      const response = await api.post('/tools', request);
+
+      const tool = response.data;
+
+      tools.push(tool);
+
+      isOpenAdd();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const removeTool = useCallback(
@@ -87,16 +99,19 @@ const Dashboard: React.FC = () => {
       <Modal title="Add new tool" type="add">
         <Form onSubmit={handleSubmit}>
           <p>Tool Name</p>
-          <Input name="title" sizeType="form" />
+          <Input name="title" sizeType="form" required />
 
           <p>Tool Link</p>
-          <Input name="link" sizeType="form" />
+          <Input name="link" sizeType="form" required />
 
           <p>Tool description</p>
-          <Input name="description" sizeType="form" isTextArea />
+          <Input name="description" sizeType="form" isTextArea required />
 
-          <p>Tags</p>
-          <Input name="tags" sizeType="form" />
+          <p>
+            Tags
+            <span>*separate with spaces</span>
+          </p>
+          <Input name="tags" sizeType="form" required />
 
           <div>
             <Button variant="addTool" size="regular" type="submit">

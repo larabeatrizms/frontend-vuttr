@@ -64,6 +64,11 @@ export const Content = styled.div`
       margin-bottom: 1.5rem;
     }
 
+    p > span {
+      font-size: 1rem;
+      margin-left: 0.7rem;
+    }
+
     textarea {
       background-color: ${(props) => props.theme.colors.backgroundCard};
       color: ${(props) => props.theme.colors.cardDescription};

@@ -34,6 +34,7 @@ const Input: React.FC<InputProps> = ({
           defaultValue={defaultValue}
           rows={4}
           cols={55}
+          required
         />
       ) : (
         <Container

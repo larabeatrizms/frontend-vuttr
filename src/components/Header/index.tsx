@@ -5,6 +5,7 @@ import logoImg from '../../assets/logo.png';
 
 import { useModal } from '../../hooks/modal';
 
+import api from '../../services/api';
 import ButtonTheme from '../ButtonTheme';
 import Input from '../Input';
 import Button from '../Button';
