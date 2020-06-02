@@ -5,13 +5,14 @@ import { useModal } from '../../hooks/modal';
 import { Container, Content } from './styles';
 
 interface CardProps {
+  id: string;
   title: string;
   link: string;
   description: string;
   tags: string[];
 }
 
-const Card: React.FC<CardProps> = ({ title, link, description, tags }) => {
+const Card: React.FC<CardProps> = ({ id, title, link, description, tags }) => {
   const { isOpenRemove } = useModal();
 
   return (
@@ -25,7 +26,7 @@ const Card: React.FC<CardProps> = ({ title, link, description, tags }) => {
           ))}
         </div>
       </Content>
-      <button type="button" onClick={() => isOpenRemove()}>
+      <button type="button" onClick={() => isOpenRemove(id)}>
         <FiX size={18} />
       </button>
     </Container>

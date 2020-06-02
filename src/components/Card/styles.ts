@@ -54,6 +54,7 @@ export const Content = styled.div`
   p {
     color: ${(props) => props.theme.colors.cardDescription};
     font-size: 1.6rem;
+    margin-top: 1.5rem;
     margin-bottom: 2rem;
   }
 

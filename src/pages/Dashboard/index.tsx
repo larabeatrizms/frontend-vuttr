@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FiPlus } from 'react-icons/fi';
+import api from '../../services/api';
+import { useModal } from '../../hooks/modal';
 
 import Modal from '../../components/Modal';
 import Input from '../../components/Input';
@@ -9,7 +11,6 @@ import Card from '../../components/Card';
 import Footer from '../../components/Footer';
 
 import { Container } from './styles';
-import api from '../../services/api';
 
 interface Tool {
   id: string;
@@ -21,6 +22,7 @@ interface Tool {
 
 const Dashboard: React.FC = () => {
   const [tools, setTools] = useState<Tool[]>([]);
+  const { isOpenRemove, cardId } = useModal();
 
   useEffect(() => {
     async function loadTools(): Promise<void> {
@@ -32,15 +34,38 @@ const Dashboard: React.FC = () => {
     loadTools();
   }, []);
 
+  const removeTool = useCallback(
+    async (id) => {
+      await api.delete(`/tools/${id}`);
+
+      const toolIndex = tools.findIndex((tool) => tool.id === id);
+
+      const toolsNew = tools;
+      toolsNew.splice(toolIndex, 1);
+
+      setTools([...toolsNew]);
+      isOpenRemove();
+    },
+    [isOpenRemove, tools],
+  );
+
   return (
     <Container>
       <Modal title="Remove tool" type="remove">
         <p>Are you sure you want to remove Notion</p>
         <div>
-          <Button variant="cancel" size="regular">
+          <Button
+            variant="cancel"
+            size="regular"
+            onClick={() => isOpenRemove()}
+          >
             <div>Cancel</div>
           </Button>
-          <Button variant="remove" size="regular">
+          <Button
+            variant="remove"
+            size="regular"
+            onClick={() => removeTool(cardId)}
+          >
             <div>Remove</div>
           </Button>
         </div>
@@ -72,6 +97,7 @@ const Dashboard: React.FC = () => {
       {tools.map((tool) => (
         <Card
           key={tool.id}
+          id={tool.id}
           title={tool.title}
           description={tool.description}
           link={tool.link}
