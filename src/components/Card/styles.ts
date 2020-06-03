@@ -10,6 +10,7 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.colors.backgroundCard};
   border-radius: 10px;
   min-height: 137px;
+  width: 100%;
 
   display: flex;
 

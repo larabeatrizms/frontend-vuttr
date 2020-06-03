@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { Form } from '@unform/web';
+import ReactLoading from 'react-loading';
 
 import { useModal } from '../../hooks/modal';
 import { useTools } from '../../hooks/tools';
@@ -12,7 +13,8 @@ import Header from '../../components/Header';
 import Card from '../../components/Card';
 import Footer from '../../components/Footer';
 
-import { Container } from './styles';
+import colors from '../../styles/colors';
+import { Container, SectionTools } from './styles';
 
 interface Tool {
   id: string;
@@ -31,7 +33,13 @@ interface AddToolFormData {
 
 const Dashboard: React.FC = () => {
   const { isOpenAdd, isOpenRemove, cardId } = useModal();
-  const { tools, loadTools, removeTool, handleAddToolSubmit } = useTools();
+  const {
+    tools,
+    loading,
+    loadTools,
+    removeTool,
+    handleAddToolSubmit,
+  } = useTools();
 
   useEffect(() => {
     loadTools();
@@ -49,6 +57,8 @@ const Dashboard: React.FC = () => {
     },
     [isOpenRemove, removeTool],
   );
+
+  console.log(tools);
 
   return (
     <Container>
@@ -100,17 +110,22 @@ const Dashboard: React.FC = () => {
       </Modal>
       <Header />
 
-      {tools.map((tool) => (
-        <Card
-          key={tool.id}
-          id={tool.id}
-          title={tool.title}
-          description={tool.description}
-          link={tool.link}
-          tags={tool.tags}
-        />
-      ))}
-
+      <SectionTools>
+        {loading ? (
+          <ReactLoading type="bubbles" color={colors.orange} width={80} />
+        ) : (
+          tools.map((tool) => (
+            <Card
+              key={tool.id}
+              id={tool.id}
+              title={tool.title}
+              description={tool.description}
+              link={tool.link}
+              tags={tool.tags}
+            />
+          ))
+        )}
+      </SectionTools>
       <Footer />
     </Container>
   );
