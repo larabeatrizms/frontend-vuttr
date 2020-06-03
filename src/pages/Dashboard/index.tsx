@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { Form } from '@unform/web';
-import api from '../../services/api';
+
 import { useModal } from '../../hooks/modal';
+import { useTools } from '../../hooks/tools';
 
 import Modal from '../../components/Modal';
 import Input from '../../components/Input';
@@ -29,50 +30,24 @@ interface AddToolFormData {
 }
 
 const Dashboard: React.FC = () => {
-  const [tools, setTools] = useState<Tool[]>([]);
   const { isOpenAdd, isOpenRemove, cardId } = useModal();
+  const { tools, loadTools, removeTool, handleAddToolSubmit } = useTools();
 
   useEffect(() => {
-    async function loadTools(): Promise<void> {
-      const response = await api.get('/tools');
-
-      setTools(response.data);
-    }
-
     loadTools();
-  }, []);
+  }, [loadTools]);
 
   async function handleSubmit(data: AddToolFormData) {
-    try {
-      const tagsSplit = data.tags.split(' ');
-
-      const request = { ...data, tags: tagsSplit };
-
-      const response = await api.post('/tools', request);
-
-      const tool = response.data;
-
-      tools.push(tool);
-
-      isOpenAdd();
-    } catch (err) {
-      console.log(err);
-    }
+    await handleAddToolSubmit(data);
+    isOpenAdd();
   }
 
-  const removeTool = useCallback(
-    async (id) => {
-      await api.delete(`/tools/${id}`);
-
-      const toolIndex = tools.findIndex((tool) => tool.id === id);
-
-      const toolsNew = tools;
-      toolsNew.splice(toolIndex, 1);
-
-      setTools([...toolsNew]);
+  const CallRemoveTool = useCallback(
+    (id) => {
+      removeTool(id);
       isOpenRemove();
     },
-    [isOpenRemove, tools],
+    [isOpenRemove, removeTool],
   );
 
   return (
@@ -90,7 +65,7 @@ const Dashboard: React.FC = () => {
           <Button
             variant="remove"
             size="regular"
-            onClick={() => removeTool(cardId)}
+            onClick={() => CallRemoveTool(cardId)}
           >
             <div>Remove</div>
           </Button>

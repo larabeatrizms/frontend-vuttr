@@ -4,8 +4,8 @@ import { FiPlus } from 'react-icons/fi';
 import logoImg from '../../assets/logo.png';
 
 import { useModal } from '../../hooks/modal';
+import { useTools } from '../../hooks/tools';
 
-import api from '../../services/api';
 import ButtonTheme from '../ButtonTheme';
 import Input from '../Input';
 import Button from '../Button';
@@ -18,9 +18,10 @@ interface SearchData {
 
 const Header: React.FC = () => {
   const { isOpenAdd } = useModal();
+  const { handleSearchSubmit } = useTools();
 
-  function handleSubmit(data: SearchData) {
-    console.log(data);
+  async function handleSubmit(data: SearchData) {
+    await handleSearchSubmit(data);
   }
 
   return (
