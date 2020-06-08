@@ -58,8 +58,6 @@ const Dashboard: React.FC = () => {
     [isOpenRemove, removeTool],
   );
 
-  console.log(tools);
-
   return (
     <Container>
       <Modal title="Remove tool" type="remove">
