@@ -130,7 +130,7 @@ After your pull request is merged, you can delete your branch
 
 👤 **Lara Beatriz**
 
-- Twitter: [@LaraBeatrizMS](https://twitter.com/LaraBeatrizMS)
+- Twitter: [@LaraBeatrizMS2](https://twitter.com/LaraBeatrizMS2)
 - Github: [@larabeatrizms](https://github.com/larabeatrizms)
 - LinkedIn: [@larabeatrizms](https://linkedin.com/in/larabeatrizms)
 
