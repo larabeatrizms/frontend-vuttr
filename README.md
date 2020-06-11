@@ -40,13 +40,15 @@
 
 <p align="center">
   <a href="https://cool-tools.netlify.app/" rel="noopener">
-<img alt="Layout"  src="https://i.gyazo.com/66e712ea494cc3bf71cf67202a371abc.png">
+    <img alt="Layout"  src="https://i.gyazo.com/66e712ea494cc3bf71cf67202a371abc.png">
   </a>
 </p>
 
 ## 👨🏻‍💻 About the project
 
 This application aims to share tools in one place! The application is open and can be useful for salespeople, designers, developers and product managers.
+
+This application was created through wireframes and made the UI Design in Figma, you can access with this [link](https://www.figma.com/file/1SxgOMojOB2zYT0Mdk28lB/Ecoleta?node-id=0%3A1). It was quite fun to choose the colors and the identity of the application, I hope you like it.
 
 ## 🚀 Deploy
 
